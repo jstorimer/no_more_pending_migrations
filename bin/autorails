@@ -1,0 +1,24 @@
+#!/usr/bin/env ruby
+
+# monkey patch bundler
+require 'bundler'
+module Bundler
+  class << self
+    alias orig_setup setup
+
+    def autorails_setup(*)
+      begin
+        orig_setup
+      rescue Bundler::GemNotFound => e
+        STDERR.puts e.message
+        STDERR.puts "Autorails is going to try running `bundle install`."
+        exec('bundle install')
+      end
+    end
+
+    alias setup autorails_setup
+  end
+end
+
+# delegate to the rails gem
+require "rails/cli"
