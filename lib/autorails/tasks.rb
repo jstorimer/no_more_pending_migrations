@@ -11,7 +11,9 @@ abort_task.enhance do
     pending_migrations.each do |pending_migration|
       puts '  %4d %s' % [pending_migration.version, pending_migration.name]
     end
+    puts
     puts 'Autorails will now run these migrations.'
+    puts
 
     ActiveRecord::Migration.verbose = true
     ActiveRecord::Migrator.migrate("db/migrate/")
