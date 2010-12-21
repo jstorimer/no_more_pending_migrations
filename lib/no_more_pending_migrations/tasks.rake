@@ -12,12 +12,10 @@ abort_task.enhance do
       puts '  %4d %s' % [pending_migration.version, pending_migration.name]
     end
     puts
-    puts 'Autorails will now run these migrations.'
+    puts "Let's run these migrations!"
     puts
 
-    ActiveRecord::Migration.verbose = true
-    ActiveRecord::Migrator.migrate("db/migrate/")
-    Rake::Task["db:schema:dump"].invoke if ActiveRecord::Base.schema_format == :ruby
+    Rake::Task['db:migrate'].invoke
   end
 end
 
