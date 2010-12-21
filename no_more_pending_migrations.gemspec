@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = "no_more_pending_migrations"
-  s.version     = '0.0.2'
+  s.version     = '1.0.0'
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Jesse Storimer"]
   s.email       = ["jstorimer@gmail.com"]
